@@ -1,0 +1,25 @@
+{
+  "name": "fsd_mt01_tushar_sharma_cse34_1250_batch1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tstusharsharma9292/FSD_MT01_Tushar_Sharma_CSE34_1250_Batch1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tstusharsharma9292/FSD_MT01_Tushar_Sharma_CSE34_1250_Batch1/issues"
+  },
+  "homepage": "https://github.com/tstusharsharma9292/FSD_MT01_Tushar_Sharma_CSE34_1250_Batch1#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
