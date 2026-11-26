@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Record Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">SRM</div>
+        <div>
+          <h1>Student Record Management</h1>
+          <p class="subtitle">REST API Console &bull; In-Memory Store</p>
+        </div>
+      </div>
+      <button id="openAddBtn" class="btn btn-primary">+ Add Student</button>
+    </header>
+
+    <section class="stats-row" aria-label="Summary">
+      <div class="stat-card">
+        <span class="stat-label">Total Students</span>
+        <strong id="totalCount" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Showing</span>
+        <strong id="showingCount" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Active Branches</span>
+        <strong id="branchCount" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Last API Status</span>
+        <strong id="lastStatus" class="stat-value status-pill">—</strong>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <form id="filterForm" class="filter-group">
+        <input
+          type="text"
+          id="branchInput"
+          placeholder="Filter by branch (e.g. CSE, ECE, IT)..."
+          aria-label="Filter by branch"
+        />
+        <button type="submit" class="btn btn-secondary">Filter</button>
+        <button type="button" id="resetFilterBtn" class="btn btn-ghost">Reset</button>
+      </form>
+
+      <div class="quick-chips" id="branchChips" aria-label="Quick branch filters"></div>
+
+      <form id="lookupForm" class="lookup-group">
+        <input
+          type="number"
+          id="idInput"
+          placeholder="Find by ID..."
+          min="1"
+          aria-label="Find student by ID"
+        />
+        <button type="submit" class="btn btn-secondary">Lookup</button>
+      </form>
+    </section>
+
+    <main class="table-card">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Roll Number</th>
+              <th>Name</th>
+              <th>Branch</th>
+              <th>Semester</th>
+              <th>Email</th>
+              <th class="actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <tr>
+              <td colspan="7" class="empty-state">Loading students...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add / Edit Modal -->
+  <div id="studentModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Student</h2>
+        <button type="button" id="closeModalBtn" class="icon-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="studentForm" novalidate>
+        <input type="hidden" id="editStudentId" />
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="rollNumber">Roll Number</label>
+            <input type="text" id="rollNumber" placeholder="e.g. IT2404" required />
+          </div>
+          <div class="form-field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="e.g. Meera Gupta" required />
+          </div>
+          <div class="form-field">
+            <label for="branch">Branch</label>
+            <input type="text" id="branch" placeholder="e.g. CSE, ECE, IT" required />
+          </div>
+          <div class="form-field">
+            <label for="semester">Semester</label>
+            <input type="number" id="semester" min="1" max="12" placeholder="e.g. 3" required />
+          </div>
+          <div class="form-field full-width">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g. meera@example.com" required />
+          </div>
+        </div>
+        <div id="formError" class="form-error hidden"></div>
+        <div class="modal-footer">
+          <button type="button" id="cancelModalBtn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" id="saveStudentBtn" class="btn btn-primary">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
